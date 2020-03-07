@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import {
   Button,
   Modal,
@@ -9,8 +10,9 @@ import {
   Input,
   Label
 } from "reactstrap";
+import { selectLevel } from "../actions/levelAction";
 
-export default function Level(props) {
+function Level(props) {
   const dict = {
     "Very easy": 0,
     Easy: 1,
@@ -33,7 +35,9 @@ export default function Level(props) {
   const onClick = event => {
     event.preventDefault();
     toggle();
-    props.changeLevel(level);
+    // props.changeLevel(level);
+    props.onClick(level);
+    //this.props.selectLevel(level);
   };
 
   return (
@@ -66,3 +70,13 @@ export default function Level(props) {
     </div>
   );
 }
+
+let mapDispatchToProps = function(dispatch, props) {
+  return {
+    onClick: level => {
+      dispatch(selectLevel(level));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Level);
