@@ -1,5 +1,4 @@
 import React from "react";
-import TestComponent from "../../test/TestComponent";
 
 function About() {
   return (
@@ -12,7 +11,6 @@ function About() {
         hard). Harder difficulty means more candidate words and longer word
         length.
       </p>
-      <TestComponent />
     </div>
   );
 }

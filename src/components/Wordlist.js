@@ -1,11 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 
-function Wordlist({ level, wordlist }) {
+function Wordlist(props) {
   // let wordLength = 2 * level + 1;
   return (
     <div>
       <ul>
-        {wordlist.map(word => (
+        {props.candidates.map(word => (
           <li>{word}</li>
         ))}
       </ul>
@@ -13,4 +14,10 @@ function Wordlist({ level, wordlist }) {
   );
 }
 
-export default Wordlist;
+function mapStateToProps(state, props) {
+  return {
+    candidates: state.words.candidates
+  };
+}
+
+export default connect(mapStateToProps, null)(Wordlist);
