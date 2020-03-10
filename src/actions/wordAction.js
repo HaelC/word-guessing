@@ -1,4 +1,9 @@
-import { FETCH_WORDS, CREATE_DICT, SHOW_CANDIDATES } from "./types";
+import {
+  FETCH_WORDS,
+  CREATE_DICT,
+  SHOW_CANDIDATES,
+  GENERATE_TARGETS
+} from "./types";
 
 export const fetchWords = () => dispatch => {
   let dict = {};
@@ -27,9 +32,33 @@ export const fetchWords = () => dispatch => {
 };
 
 export const generateTargets = level => dispatch => {
-  console.log("Generating targets");
   dispatch({
-    type: SHOW_CANDIDATES,
-    payload: level + 5
+    type: GENERATE_TARGETS,
+    payload: {
+      wordLength: level + 5,
+      wordNumber: level + 7
+    }
   });
 };
+
+export const testGenerating = level => dispatch => {
+  dispatch({
+    type: GENERATE_TARGETS,
+    payload: {
+      wordLength: level + 5,
+      wordNumber: level + 7
+    }
+  });
+};
+
+// export const generateTargets = (wordLength, wordNumber) => dispatch => {
+//   dispatch({
+//     type: GENERATE_TARGETS,
+//     // payload: {
+//     //   wordLength: wordLength,
+//     //   wordNumber: wordNumber
+//     // }
+//     wordLength: wordLength,
+//     wordNumber: wordNumber
+//   });
+// };

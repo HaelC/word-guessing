@@ -4,6 +4,7 @@ import Level from "../Level";
 import Wordlist from "../Wordlist";
 import { clearLevel } from "../../actions/levelAction";
 import { fetchWords, generateTargets } from "../../actions/wordAction";
+import Guess from "../Guess";
 
 class Play extends Component {
   state = {
@@ -24,12 +25,14 @@ class Play extends Component {
     //       wordlist: dict.sort(() => 0.5 - Math.random()).slice(0, 2000)
     //     })
     // );
+    this.props.clearLevel();
     this.props.fetchWords();
   }
 
-  componentWillUnmount() {
-    this.props.clearLevel();
-  }
+  // componentWillUnmount() {
+  //   console.log("left");
+  //   this.props.clearLevel();
+  // }
 
   // changeLevel = selectedLevel => {
   //   this.setState({ level: selectedLevel });
@@ -46,12 +49,14 @@ class Play extends Component {
     }
 
     this.props.generateTargets(this.props.level);
+    // this.props.testGenerating(this.props.level);
 
     return (
       <div>
         {/* <p>{level}</p> */}
         <p>{this.props.level}</p>
         <Wordlist level={this.props.level} />
+        <Guess />
       </div>
     );
   }

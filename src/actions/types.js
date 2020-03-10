@@ -5,3 +5,5 @@ export const FETCH_WORDS = "FETCH_WORDS";
 export const CREATE_DICT = "CREATE_DICT";
 export const SHOW_CANDIDATES = "SHOW_CANDIDATES";
 export const PICK_ANSWER = "PICK_ANSWER";
+export const GENERATE_TARGETS = "GENERATE_TARGETS";
+export const SHUFFLE_LIST = "SHUFFLE_LISTS";

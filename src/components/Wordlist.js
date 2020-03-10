@@ -1,17 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
-function Wordlist(props) {
+class Wordlist extends Component {
   // let wordLength = 2 * level + 1;
-  return (
-    <div>
-      <ul>
-        {props.candidates.map(word => (
-          <li>{word}</li>
-        ))}
-      </ul>
-    </div>
-  );
+  render() {
+    // this.props.testGenerating(this.props.level);
+
+    return (
+      <div>
+        <h2>Word List</h2>
+        <ul>
+          {this.props.candidates.map(word => (
+            <li>{word.toUpperCase()}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state, props) {

@@ -32,6 +32,12 @@ function Level(props) {
   //   this.props.changeLevel(level);
   // };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    toggle();
+    props.handleSubmit(level);
+  };
+
   const onClick = event => {
     event.preventDefault();
     toggle();
@@ -45,7 +51,7 @@ function Level(props) {
       <Modal isOpen={modal}>
         <ModalHeader>Select Difficulty:</ModalHeader>
         <ModalBody>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <FormGroup>
               <Label for="level">Level</Label>
               <Input
@@ -61,7 +67,7 @@ function Level(props) {
                 <option>Very hard</option>
               </Input>
             </FormGroup>
-            <Button color="primary" type="submit" onClick={onClick}>
+            <Button color="primary" type="submit">
               Select
             </Button>
           </Form>
@@ -74,6 +80,9 @@ function Level(props) {
 let mapDispatchToProps = function(dispatch, props) {
   return {
     onClick: level => {
+      dispatch(selectLevel(level));
+    },
+    handleSubmit: level => {
       dispatch(selectLevel(level));
     }
   };
