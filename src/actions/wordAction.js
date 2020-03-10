@@ -1,8 +1,8 @@
 import {
   FETCH_WORDS,
   CREATE_DICT,
-  SHOW_CANDIDATES,
-  GENERATE_TARGETS
+  GENERATE_TARGETS,
+  SHUFFLE_LIST
 } from "./types";
 
 export const fetchWords = () => dispatch => {
@@ -48,6 +48,12 @@ export const testGenerating = level => dispatch => {
       wordLength: level + 5,
       wordNumber: level + 7
     }
+  });
+};
+
+export const shuffleList = () => dispatch => {
+  dispatch({
+    type: SHUFFLE_LIST
   });
 };
 

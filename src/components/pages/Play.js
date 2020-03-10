@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import Level from "../Level";
 import Wordlist from "../Wordlist";
 import { clearLevel } from "../../actions/levelAction";
-import { fetchWords, generateTargets } from "../../actions/wordAction";
+import {
+  fetchWords,
+  generateTargets,
+  shuffleList
+} from "../../actions/wordAction";
 import Guess from "../Guess";
 
 class Play extends Component {
@@ -49,11 +53,11 @@ class Play extends Component {
     }
 
     this.props.generateTargets(this.props.level);
+    this.props.shuffleList();
     // this.props.testGenerating(this.props.level);
 
     return (
       <div>
-        {/* <p>{level}</p> */}
         <p>{this.props.level}</p>
         <Wordlist level={this.props.level} />
         <Guess />
@@ -64,14 +68,13 @@ class Play extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    // level: state.difficulty.level
     level: state.level
-    // dict: state.words.dict
   };
 }
 
 export default connect(mapStateToProps, {
   fetchWords,
   clearLevel,
-  generateTargets
+  generateTargets,
+  shuffleList
 })(Play);

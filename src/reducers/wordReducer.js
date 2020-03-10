@@ -2,7 +2,8 @@ import {
   FETCH_WORDS,
   CREATE_DICT,
   SHOW_CANDIDATES,
-  GENERATE_TARGETS
+  GENERATE_TARGETS,
+  SHUFFLE_LIST
 } from "../actions/types";
 
 const initialState = {
@@ -38,6 +39,15 @@ export default function(state = initialState, action) {
           action.payload.wordNumber
         ),
         answer: state.dict[action.payload.wordLength][0]
+      };
+    case SHUFFLE_LIST:
+      let shuffled = state.candidates;
+      const index = Math.floor(Math.random() * shuffled.length);
+      shuffled[0] = shuffled[index];
+      shuffled[index] = state.answer;
+      return {
+        ...state,
+        candidates: shuffled
       };
     default:
       return state;

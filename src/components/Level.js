@@ -38,13 +38,13 @@ function Level(props) {
     props.handleSubmit(level);
   };
 
-  const onClick = event => {
-    event.preventDefault();
-    toggle();
-    // props.changeLevel(level);
-    props.onClick(level);
-    //this.props.selectLevel(level);
-  };
+  // const onClick = event => {
+  //   event.preventDefault();
+  //   toggle();
+  //   // props.changeLevel(level);
+  //   props.onClick(level);
+  //   //this.props.selectLevel(level);
+  // };
 
   return (
     <div>
@@ -79,9 +79,9 @@ function Level(props) {
 
 let mapDispatchToProps = function(dispatch, props) {
   return {
-    onClick: level => {
-      dispatch(selectLevel(level));
-    },
+    // onClick: level => {
+    //   dispatch(selectLevel(level));
+    // },
     handleSubmit: level => {
       dispatch(selectLevel(level));
     }
