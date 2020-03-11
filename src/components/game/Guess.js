@@ -25,6 +25,7 @@ export class Guess extends Component {
         // errorMessage: "Your guessing should be a " + len + "-length word."
         errorMessage: `Your guessing should be a ${len}-length word.`
       });
+      return false;
     } else if (
       !this.props.candidates.includes(this.state.guessing.toLowerCase())
     ) {
@@ -32,7 +33,9 @@ export class Guess extends Component {
         //errorMessage: "The word is not in the word list."
         errorMessage: `The word '${this.state.guessing}' is not in the word list.`
       });
+      return false;
     }
+    return true;
   }
 
   _countCorrect() {
@@ -47,8 +50,12 @@ export class Guess extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this._validate();
-    if (this.state.errorMessage) {
+    // this._validate();
+    // if (this.state.errorMessage !== "") {
+    //   console.log("what?");
+    //   return;
+    // }
+    if (!this._validate()) {
       return;
     }
 
