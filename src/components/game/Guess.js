@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, FormGroup, Input, Button } from "reactstrap";
+import History from "./History";
 
 export class Guess extends Component {
   state = {
@@ -87,7 +88,7 @@ export class Guess extends Component {
             <p>{chance}</p>
           </FormGroup>
         </Form>
-        <ul>
+        {/* <ul>
           {this.state.wordHistory.map(word => (
             <li>{word}</li>
           ))}
@@ -96,7 +97,11 @@ export class Guess extends Component {
           {this.state.correctHistory.map(correct => (
             <li>{correct}</li>
           ))}
-        </ul>
+        </ul> */}
+        <History
+          wordHistory={this.state.wordHistory}
+          answer={this.props.answer}
+        />
       </div>
     );
   }

@@ -1,16 +1,27 @@
 import React from "react";
 
-function History({ wordHistory, correctHistory }) {
+function History({ wordHistory, answer }) {
+  let len = answer.length;
+
+  const _countCorrect = word => {
+    let count = 0;
+    for (let i = 0; i < len; i++) {
+      if (word.toLowerCase()[i] === answer[i]) {
+        count++;
+      }
+    }
+    return count;
+  };
+
   return (
     <div>
+      <h4>Guessing History</h4>
       <ul>
         {wordHistory.map(word => (
-          <li>{word}</li>
-        ))}
-      </ul>
-      <ul>
-        {correctHistory.map(correct => (
-          <li>{correct}</li>
+          <li>
+            <span className="word">{word.toUpperCase()} </span>
+            {`${_countCorrect(word)}/${len} correct`}
+          </li>
         ))}
       </ul>
     </div>
