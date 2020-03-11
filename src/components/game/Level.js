@@ -10,7 +10,7 @@ import {
   Input,
   Label
 } from "reactstrap";
-import { selectLevel } from "../actions/levelAction";
+import { selectLevel } from "../../actions/levelAction";
 
 function Level(props) {
   const dict = {

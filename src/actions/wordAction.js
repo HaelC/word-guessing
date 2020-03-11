@@ -31,12 +31,22 @@ export const fetchWords = () => dispatch => {
     });
 };
 
-export const generateTargets = level => dispatch => {
+// export const generateTargets = level => dispatch => {
+//   dispatch({
+//     type: GENERATE_TARGETS,
+//     payload: {
+//       wordLength: level + 5,
+//       wordNumber: level + 7
+//     }
+//   });
+// };
+
+export const generateTargets = (len, num) => dispatch => {
   dispatch({
     type: GENERATE_TARGETS,
     payload: {
-      wordLength: level + 5,
-      wordNumber: level + 7
+      wordLength: len,
+      wordNumber: num
     }
   });
 };

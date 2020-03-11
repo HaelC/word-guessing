@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Level from "../Level";
-import Wordlist from "../Wordlist";
+import Level from "../game/Level";
+import Wordlist from "../game/Wordlist";
 import { clearLevel } from "../../actions/levelAction";
 import {
   fetchWords,
   generateTargets,
   shuffleList
 } from "../../actions/wordAction";
-import Guess from "../Guess";
+import Guess from "../game/Guess";
 
 class Play extends Component {
-  state = {
-    // level: -1,
-    wordlist: [],
-    wordlist1: ["hello", "world"],
-    dict: {}
-  };
-
   componentDidMount() {
     // fetch(
     //   "https://gist.githubusercontent.com/hunterjorgensen167/4478cd2ca4bfa2062ed0f1d2dfb08ee1/raw/cd5a597fd303088903131134c76c91b8359c47b0/word_list"
@@ -42,6 +35,40 @@ class Play extends Component {
   //   this.setState({ level: selectedLevel });
   // };
 
+  _getWordLength(level) {
+    switch (level) {
+      case 0:
+        return Math.floor(Math.random() * 2) + 4;
+      case 1:
+        return Math.floor(Math.random() * 2) + 6;
+      case 2:
+        return Math.floor(Math.random() * 3) + 8;
+      case 3:
+        return Math.floor(Math.random() * 3) + 11;
+      case 4:
+        return Math.floor(Math.random() * 2) + 14;
+      default:
+        return 0;
+    }
+  }
+
+  _getWordNumber(level) {
+    switch (level) {
+      case 0:
+        return Math.floor(Math.random() * 2) + 5;
+      case 1:
+        return Math.floor(Math.random() * 2) + 7;
+      case 2:
+        return Math.floor(Math.random() * 3) + 9;
+      case 3:
+        return Math.floor(Math.random() * 2) + 12;
+      case 4:
+        return Math.floor(Math.random() * 2) + 14;
+      default:
+        return 0;
+    }
+  }
+
   render() {
     if (this.props.level === -1) {
       return (
@@ -52,7 +79,11 @@ class Play extends Component {
       );
     }
 
-    this.props.generateTargets(this.props.level);
+    // this.props.generateTargets(this.props.level);
+    this.props.generateTargets(
+      this._getWordLength(this.props.level),
+      this._getWordNumber(this.props.level)
+    );
     this.props.shuffleList();
     // this.props.testGenerating(this.props.level);
 
@@ -61,6 +92,7 @@ class Play extends Component {
         <p>{this.props.level}</p>
         <Wordlist level={this.props.level} />
         <Guess />
+        <button onClick={this.props.clearLevel}>test</button>
       </div>
     );
   }
