@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import History from "./History";
+import { clearLevel } from "../../actions/levelAction";
 
 export class Guess extends Component {
   state = {
@@ -97,10 +98,17 @@ export class Guess extends Component {
                 value={this.state.guessing}
                 onChange={this.handleChange}
               ></Input>
-              <p class="error">{this.state.errorMessage}</p>
+              <p className="error">{this.state.errorMessage}</p>
 
               <Button color="primary" type="submit" className="mx-auto d-block">
                 Guess
+              </Button>
+              <Button
+                color="secondary"
+                className="mx-auto d-block"
+                onClick={this.props.clearLevel}
+              >
+                New Game
               </Button>
             </FormGroup>
           </Form>
@@ -117,4 +125,4 @@ function mapStateToProps(state, props) {
   };
 }
 
-export default connect(mapStateToProps, null)(Guess);
+export default connect(mapStateToProps, { clearLevel })(Guess);
