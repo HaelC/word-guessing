@@ -77,40 +77,34 @@ export class Guess extends Component {
   render() {
     let chance = 4 - this.state.wordHistory.length;
     return (
-      <div>
-        <p>
-          Remaining chances: <span id="chance">{chance}</span>
-        </p>
-        <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
-            <Input
-              type="text"
-              id="guess"
-              name="guess"
-              value={this.state.guessing}
-              onChange={this.handleChange}
-            ></Input>
-            <p class="error">{this.state.errorMessage}</p>
+      <div className="row">
+        <div className="col-6">
+          <History
+            wordHistory={this.state.wordHistory}
+            answer={this.props.answer}
+          />
+        </div>
+        <div className="col-6">
+          <p>
+            Remaining chances: <span id="chance">{chance}</span>
+          </p>
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Input
+                type="text"
+                id="guess"
+                name="guess"
+                value={this.state.guessing}
+                onChange={this.handleChange}
+              ></Input>
+              <p class="error">{this.state.errorMessage}</p>
 
-            <Button color="primary" type="submit" className="mx-auto d-block">
-              Guess
-            </Button>
-          </FormGroup>
-        </Form>
-        {/* <ul>
-          {this.state.wordHistory.map(word => (
-            <li>{word}</li>
-          ))}
-        </ul>
-        <ul>
-          {this.state.correctHistory.map(correct => (
-            <li>{correct}</li>
-          ))}
-        </ul> */}
-        <History
-          wordHistory={this.state.wordHistory}
-          answer={this.props.answer}
-        />
+              <Button color="primary" type="submit" className="mx-auto d-block">
+                Guess
+              </Button>
+            </FormGroup>
+          </Form>
+        </div>
       </div>
     );
   }

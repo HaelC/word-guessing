@@ -91,10 +91,10 @@ class Play extends Component {
       // <div className="container">
       <div className="row">
         {/* <p>{this.props.level}</p> */}
-        <div className="col-6">
+        <div className="col-4">
           <Wordlist level={this.props.level} />
         </div>
-        <div className="col-6">
+        <div className="col-8">
           <Guess />
         </div>
         {/* <button onClick={this.props.clearLevel}>test</button> */}
