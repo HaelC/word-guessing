@@ -15,7 +15,7 @@ function History({ wordHistory, answer }) {
 
   return (
     <div>
-      <h4>Guessing History</h4>
+      <h3>Guessing History</h3>
       <ul>
         {wordHistory.map(word => (
           <li>

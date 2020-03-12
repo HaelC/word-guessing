@@ -88,12 +88,18 @@ class Play extends Component {
     // this.props.testGenerating(this.props.level);
 
     return (
-      <div>
-        <p>{this.props.level}</p>
-        <Wordlist level={this.props.level} />
-        <Guess />
-        <button onClick={this.props.clearLevel}>test</button>
+      // <div className="container">
+      <div className="row">
+        {/* <p>{this.props.level}</p> */}
+        <div className="col-6">
+          <Wordlist level={this.props.level} />
+        </div>
+        <div className="col-6">
+          <Guess />
+        </div>
+        {/* <button onClick={this.props.clearLevel}>test</button> */}
       </div>
+      // </div>
     );
   }
 }

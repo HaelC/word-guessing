@@ -78,6 +78,9 @@ export class Guess extends Component {
     let chance = 4 - this.state.wordHistory.length;
     return (
       <div>
+        <p>
+          Remaining chances: <span id="chance">{chance}</span>
+        </p>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Input
@@ -87,12 +90,11 @@ export class Guess extends Component {
               value={this.state.guessing}
               onChange={this.handleChange}
             ></Input>
-            <p>{this.state.errorMessage}</p>
+            <p class="error">{this.state.errorMessage}</p>
 
-            <Button color="primary" type="submit">
+            <Button color="primary" type="submit" className="mx-auto d-block">
               Guess
             </Button>
-            <p>{chance}</p>
           </FormGroup>
         </Form>
         {/* <ul>
