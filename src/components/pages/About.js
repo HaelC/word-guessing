@@ -16,7 +16,7 @@ function About() {
         <Table>
           <thead>
             <tr>
-              <th>Difficult</th>
+              <th>Difficulty</th>
               <th>Word Length</th>
               <th>Word Number</th>
             </tr>
@@ -49,6 +49,12 @@ function About() {
             </tr>
           </tbody>
         </Table>
+        <p>
+          Regardless of the difficulty you choose, you have 4 chances to guess.
+          On each incorrect guess, you will know how many characters are
+          correct. If you run figure out the correct answer in 4 guesses, you
+          win. Good luck!
+        </p>
       </div>
     </div>
   );

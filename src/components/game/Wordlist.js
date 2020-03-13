@@ -11,7 +11,9 @@ class Wordlist extends Component {
         <h2>Word List</h2>
         <ul>
           {this.props.candidates.map(word => (
-            <li className="word">{word.toUpperCase()}</li>
+            <li className="word" key={word.toUpperCase()}>
+              {word.toUpperCase()}
+            </li>
           ))}
         </ul>
       </div>

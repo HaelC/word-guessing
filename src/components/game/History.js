@@ -18,7 +18,7 @@ function History({ wordHistory, answer }) {
       <h3>Guessing History</h3>
       <ul>
         {wordHistory.map(word => (
-          <li>
+          <li key={word.toUpperCase()}>
             <span className="word">{word.toUpperCase()} </span>
             {`${_countCorrect(word)}/${len} correct`}
           </li>
