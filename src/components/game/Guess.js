@@ -23,7 +23,6 @@ export class Guess extends Component {
     let len = this.props.candidates[0].length;
     if (this.state.guessing.length !== len) {
       this.setState({
-        // errorMessage: "Your guessing should be a " + len + "-length word."
         errorMessage: `Your guessing should be a ${len}-length word.`
       });
       return false;
@@ -31,7 +30,6 @@ export class Guess extends Component {
       !this.props.candidates.includes(this.state.guessing.toLowerCase())
     ) {
       this.setState({
-        //errorMessage: "The word is not in the word list."
         errorMessage: `The word '${this.state.guessing}' is not in the word list.`
       });
       return false;
@@ -51,23 +49,13 @@ export class Guess extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // this._validate();
-    // if (this.state.errorMessage !== "") {
-    //   console.log("what?");
-    //   return;
-    // }
     if (!this._validate()) {
       return;
     }
 
-    //let correct = this._countCorrect();
-    //if (correct === this.props.answer.length) {
-    //  alert("You win!");
-    //} else {
     this.setState({
       wordHistory: [...this.state.wordHistory, this.state.guessing]
     });
-    //}
 
     this.setState({
       guessing: ""
@@ -77,9 +65,6 @@ export class Guess extends Component {
   render() {
     let len = this.state.wordHistory.length;
     let chance = 4 - len;
-    // if (chance === 0) {
-    //   return <Gameover answer={this.props.answer} />;
-    // }
 
     return (
       <div className="row">

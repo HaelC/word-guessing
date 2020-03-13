@@ -79,9 +79,6 @@ function Level(props) {
 
 let mapDispatchToProps = function(dispatch, props) {
   return {
-    // onClick: level => {
-    //   dispatch(selectLevel(level));
-    // },
     handleSubmit: level => {
       dispatch(selectLevel(level));
     }
