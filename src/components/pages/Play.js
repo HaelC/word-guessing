@@ -26,6 +26,12 @@ class Play extends Component {
     this.props.fetchWords();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.level !== prevProps.level) {
+      this.props.fetchWords();
+    }
+  }
+
   // componentWillUnmount() {
   //   console.log("left");
   //   this.props.clearLevel();

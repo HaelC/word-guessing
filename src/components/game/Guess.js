@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import History from "./History";
 import { clearLevel } from "../../actions/levelAction";
+import Gameover from "./Gameover";
 
 export class Guess extends Component {
   state = {
     guessing: "",
     errorMessage: "",
-    wordHistory: [],
-    correctHistory: []
+    wordHistory: []
   };
 
   handleChange = e => {
@@ -60,15 +60,14 @@ export class Guess extends Component {
       return;
     }
 
-    let correct = this._countCorrect();
-    if (correct === this.props.answer.length) {
-      alert("You win!");
-    } else {
-      this.setState({
-        wordHistory: [this.state.guessing, ...this.state.wordHistory],
-        correctHistory: [correct, ...this.state.correctHistory]
-      });
-    }
+    //let correct = this._countCorrect();
+    //if (correct === this.props.answer.length) {
+    //  alert("You win!");
+    //} else {
+    this.setState({
+      wordHistory: [...this.state.wordHistory, this.state.guessing]
+    });
+    //}
 
     this.setState({
       guessing: ""
@@ -76,7 +75,12 @@ export class Guess extends Component {
   };
 
   render() {
-    let chance = 4 - this.state.wordHistory.length;
+    let len = this.state.wordHistory.length;
+    let chance = 4 - len;
+    // if (chance === 0) {
+    //   return <Gameover answer={this.props.answer} />;
+    // }
+
     return (
       <div className="row">
         <div className="col-6">
@@ -113,6 +117,16 @@ export class Guess extends Component {
             </FormGroup>
           </Form>
         </div>
+        {len > 0 && this.state.wordHistory[len - 1] === this.props.answer ? (
+          <Gameover win={true} answer={this.props.answer} />
+        ) : (
+          ""
+        )}
+        {chance === 0 ? (
+          <Gameover win={false} answer={this.props.answer} />
+        ) : (
+          ""
+        )}
       </div>
     );
   }
