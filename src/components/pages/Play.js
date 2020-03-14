@@ -11,9 +11,14 @@ import {
 import Guess from "../game/Guess";
 
 class Play extends Component {
+  constructor(props) {
+    super(props);
+    props.fetchWords();
+  }
+
   componentDidMount() {
     this.props.clearLevel();
-    this.props.fetchWords();
+    // this.props.fetchWords();
   }
 
   componentDidUpdate(prevProps) {
