@@ -4,6 +4,7 @@ import { Form, FormGroup, Input, Button } from "reactstrap";
 import History from "./History";
 import { clearLevel } from "../../actions/levelAction";
 import Gameover from "./Gameover";
+import { countCorrect, takeTurn } from "../../actions/guessAction";
 
 export class Guess extends Component {
   state = {
@@ -37,6 +38,7 @@ export class Guess extends Component {
     return true;
   }
 
+  /*
   _countCorrect() {
     let count = 0;
     for (let i = 0; i < this.props.answer.length; i++) {
@@ -46,6 +48,7 @@ export class Guess extends Component {
     }
     return count;
   }
+  */
 
   handleSubmit = e => {
     e.preventDefault();
@@ -57,14 +60,17 @@ export class Guess extends Component {
       wordHistory: [...this.state.wordHistory, this.state.guessing]
     });
 
+    this.props.countCorrect(this.state.guessing, this.props.answer);
+    this.props.takeTurn(this.state.guessing, this.props.answer);
+
     this.setState({
       guessing: ""
     });
   };
 
   render() {
-    let len = this.state.wordHistory.length;
-    let chance = 4 - len;
+    // let len = this.state.wordHistory.length;
+    // let chance = 4 - len;
 
     return (
       <div className="row">
@@ -76,7 +82,7 @@ export class Guess extends Component {
         </div>
         <div className="col-6">
           <p>
-            Remaining chances: <span id="chance">{chance}</span>
+            Remaining chances: <span id="chance">{this.props.chances}</span>
           </p>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
@@ -102,7 +108,7 @@ export class Guess extends Component {
             </FormGroup>
           </Form>
         </div>
-        {len > 0 && this.state.wordHistory[len - 1] === this.props.answer ? (
+        {/* {len > 0 && this.state.wordHistory[len - 1] === this.props.answer ? (
           <Gameover win={true} answer={this.props.answer} />
         ) : (
           ""
@@ -111,7 +117,9 @@ export class Guess extends Component {
           <Gameover win={false} answer={this.props.answer} />
         ) : (
           ""
-        )}
+          )} */}
+        {/* {this.props.answer ? <Gameover /> : ""} */}
+        <Gameover />
       </div>
     );
   }
@@ -120,8 +128,12 @@ export class Guess extends Component {
 function mapStateToProps(state, props) {
   return {
     candidates: state.words.candidates,
-    answer: state.words.answer
+    answer: state.words.answer,
+    correct: state.guess.correct,
+    chances: state.guess.chances
   };
 }
 
-export default connect(mapStateToProps, { clearLevel })(Guess);
+export default connect(mapStateToProps, { clearLevel, countCorrect, takeTurn })(
+  Guess
+);
