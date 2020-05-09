@@ -1,1 +1,1 @@
-This word guessing game is assignment 2 for CS 5610 Web Development. Have fun!
+Enjoy the word guessing game at [https://words-guessing.herokuapp.com](https://words-guessing.herokuapp.com). Have fun!
